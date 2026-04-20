@@ -1,7 +1,7 @@
 
 ---
 
-# 📘 DOMjudge Docker Setup (cgroup v2 compatible)
+# DOMjudge Docker Setup (cgroup v2 compatible)
 
 This guide sets up a full DOMjudge environment using Docker:
 
@@ -11,7 +11,7 @@ This guide sets up a full DOMjudge environment using Docker:
 
 ---
 
-# 🧱 0. Requirements
+# 0. Requirements
 
 Check system compatibility:
 
@@ -39,7 +39,7 @@ Cgroup Version: 2
 
 ---
 
-# 🐳 1. Install Docker
+# 1. Install Docker
 
 ```bash
 sudo apt update
@@ -63,7 +63,7 @@ docker run hello-world
 
 ---
 
-# 🌐 2. Create Docker Network
+# 2. Create Docker Network
 
 ```bash
 docker network create domjudge
@@ -77,7 +77,7 @@ docker network ls
 
 ---
 
-# 🗄️ 3. Start MariaDB
+# 3. Start MariaDB
 
 ```bash
 docker run -d \
@@ -99,7 +99,7 @@ docker ps
 
 ---
 
-# 🧠 4. Start DOMserver
+# 4. Start DOMserver
 
 ```bash
 docker run -d \
@@ -123,7 +123,7 @@ http://localhost:12345
 
 ---
 
-# 🔑 5. Get Admin Password
+# 5. Get Admin Password
 
 ```bash
 docker exec domserver cat /opt/domjudge/domserver/etc/initial_admin_password.secret
@@ -136,7 +136,7 @@ Login:
 
 ---
 
-# 🔐 6. Get Judgehost Password
+# 6. Get Judgehost Password
 
 ```bash
 docker exec domserver cat /opt/domjudge/domserver/etc/restapi.secret
@@ -146,7 +146,7 @@ Save this — required for judgehost authentication.
 
 ---
 
-# ⚙️ 7. Start Judgehost (cgroup v2 required)
+# 7. Start Judgehost (cgroup v2 required)
 
 ```bash
 docker run -d \
@@ -164,7 +164,7 @@ docker run -d \
 
 ---
 
-# 📈 8. Scaling Judgehosts
+# 8. Scaling Judgehosts
 
 To improve performance, add more judgehosts:
 
@@ -189,7 +189,7 @@ Change only:
 
 ---
 
-# 🔍 9. Verify System
+# 9. Verify System
 
 Check containers:
 
@@ -211,22 +211,22 @@ Judge started
 
 ---
 
-# ⚠️ Common Issues
+# Common Issues
 
-### ❌ Judgehost not connecting
+### Judgehost not connecting
 
 * Wrong `JUDGEDAEMON_PASSWORD`
 * DOMserver not reachable
 * Missing `--cgroupns=host`
 
-### ❌ Database errors
+### Database errors
 
 * MariaDB not running
 * Wrong credentials
 
 ---
 
-# 🚀 Done
+# Done
 
 You now have:
 
