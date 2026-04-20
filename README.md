@@ -101,7 +101,7 @@ docker run hello-world
 
 ---
 
-# 🌐 2. Create Docker Network
+# 2. Create Docker Network
 
 ```bash id="n8c2zz"
 docker network create domjudge
