@@ -379,15 +379,44 @@ You now have:
 
 ---
 
-
 ## Running Section (Post-Installation Testing)
 
 *Check containers:
 
-```docker ps```
+```
+docker ps -a
+```
+this should be like:
 
-*Open UI:
-```http://localhost:12345```
+```
+┌──(white㉿white)-[~/Documents/DomJudge-on-CgroupV2]
+└─$ docker ps -a
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          ... NAMES
+9811199b4359   hello-world                 "/hello"                 2 minutes ago    ... reverent_johnson
+bdd5f6598796   domjudge/judgehost:latest   "/usr/bin/dumb-init …"   30 minutes ago   ... judgehost-1
+1038de916157   domjudge/judgehost:latest   "/usr/bin/dumb-init …"   33 minutes ago   ... judgehost-0
+916a2810daec   domjudge/domserver:latest   "/scripts/start.sh"      43 minutes ago   ... domserver
+34890b27e135   mariadb:10.5                "docker-entrypoint.s…"   45 minutes ago   ... mariadb
+```
+*Start MariaDB
+```
+docker start mariadb
+```
+*Start DomServer
+```
+docker start domserver
+```
+
+*Start all JudgeHosts
+```
+docker start judgehost-0
+```
+Repeat this for all judgehosts
+
+*Open UI
+```
+http://localhost:12345
+```
 
 *Login
 admin + initial_admin_password.secret
@@ -399,12 +428,14 @@ Admin -> Contests -> Create
 
 *Test submission
 
-```#include <stdio.h>
+```
+#include <stdio.h>
 int main() {
     int a,b;
     scanf("%d %d",&a,&b);
     printf("%d\n",a+b);
-}```
+}
+```
 
 *Check
 Submissions, Scoreboard, Judgehosts
